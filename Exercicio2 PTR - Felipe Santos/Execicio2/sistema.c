@@ -5,9 +5,12 @@
 //Calcular a orientacao do robô
 //v é a velocidade linear e w é a velocidade angular
 
-double x3(double v, double w)
+double x3(double *u, int t)
 {    
-    return ((v * 0) +  (w * 1));
+    double v = u[0];
+    double w = u[1];
+
+    return (((v * 0) +  (w * 1)) * t);
 }
 
 
@@ -37,16 +40,19 @@ double *ut(int k)
 
 
 //Função para calcular o vetor x(t) do problema
-double *xt(double v, double w)
+double *xt(double *u, int t)
 {
+    double v = u[0];
+    double w = u[1];
+
     double * x = (double *) calloc (3, sizeof (double));
     
     //Linhas do vetor resultante
-    double theta = x3(v, w);
+    double theta = x3(u, t);
 
-    double xc = ((v * sin(theta)) +  (w * 0));
+    double xc = ((v * -(cos(theta))) +  (w * 0));
 
-    double yc = ((v * cos(theta)) +  (w * 0));
+    double yc = ((v * sin(theta)) +  (w * 0));
 
     //retornando o vetor calculado
 
@@ -59,16 +65,18 @@ double *xt(double v, double w)
 
 //Funcao para o calculo da saída y(t)
 
-double *yt(double v, double w)
+double *yt(double *u, int t)
 {   
+     double v = u[0];
+     double w = u[1];
      double * x = (double *) calloc (3, sizeof (double));
-     x = xt(v, w);
+     x = xt(u, t);
      double * y = (double *) calloc (3, sizeof (double));
     
     //Multiplicacao das matrizes envolvidas
-    y[0] = (1 * x[0]) + (0 * x[1]) + (0 * x[2]);
-    y[1] = (0 * x[0]) + (1 * x[1]) + (0 * x[2]);
-    y[2] = (0 * x[0]) + (0 * x[1]) + (1 * x[2]);    
+    y[0] = (1 * x[0] * v * t) + (0 * x[1]) + (0 * x[2]);
+    y[1] = (0 * x[0]) + (1 * x[1] * t * v) + (0 * x[2]);
+    y[2] = (0 * x[0]) + (0 * x[1]) + (1 * x[2] * v * t);    
     
     return y;
 }

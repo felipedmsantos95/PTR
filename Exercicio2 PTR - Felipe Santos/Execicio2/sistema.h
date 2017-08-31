@@ -5,9 +5,9 @@ double x3(double v, double w);
 
 double *ut(int k);
 
-double *xt(double v, double w);
+double *xt(double *u, int t);
 
-double *yt(double v, double w);
+double *yt(double *u, int t);
 
 #endif
 

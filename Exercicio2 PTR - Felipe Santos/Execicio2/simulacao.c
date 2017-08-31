@@ -11,10 +11,12 @@ char *nomeArquivo()
     char ext[5];//Extensão do arquivo
 
     printf("Digite o nome do arquivo: ");
-    fgets(nome, 20, stdin);
+    scanf("%s", nome);    
+    //fgets(nome, 20, stdin);
     fflush(stdin);
     printf("Digite a extensao do arquivo (Exemplo '.txt', '.doc'): ");
-    fgets(ext, 5, stdin);
+    //fgets(ext, 5, stdin);
+    scanf("%s", ext);
     fflush(stdin);
 
     strcat(nome, ext);
@@ -40,12 +42,10 @@ FILE *abreArquivo()
 
 }
 
-void simulacao()
+void simulacao(int t, double *u, double *y)
 {   
     //Variaveis relacionadas ao sistema
-    int t;
-    double *u = (double *) calloc (2, sizeof (double)); //Entrada
-    double *y = (double *) calloc (3, sizeof (double)); //Saida
+    int k;
     double v; //Parametro velocidade linear dentro da entrada u
     double w; //Parametro velocidade angular dentro da entrada u
     
@@ -54,15 +54,15 @@ void simulacao()
     int escritaArquivo;    
     
     //Inicio da escrita
-    escritaArquivo = fprintf(arq, "t\t\tv\t\t\tw\t\t\txc\t\t\tyc\t\ttheta\n");
+    //escritaArquivo = fprintf(arq, "t\t\tv\t\t\tw\t\t\txc\t\t\tyc\t\ttheta\n");
 
-    for(t = 0; t <= 20; t++)
+    for(k = 0; k <= t; k++)
     {
-        u = ut(t);//Entrada em funcao do tempo
+        u = ut(k);//Entrada em funcao do tempo
         v = u[0];
         w = u[1];
-        y = yt(v, w);
-        escritaArquivo = fprintf(arq, "%d\t%lf\t%lf\t%lf\t\%lf\t%lf\n", t, v, w, y[0], y[1],y[2]);
+        y = yt(u, k);
+        escritaArquivo = fprintf(arq, "%d\t%lf\t%lf\t%lf\t\%lf\t%lf\n", k, v, w, y[0], y[1],y[2]);
         if(escritaArquivo == EOF)
             printf("Ocorreu um erro enquanto a escrita era realizada.\n");        
         
