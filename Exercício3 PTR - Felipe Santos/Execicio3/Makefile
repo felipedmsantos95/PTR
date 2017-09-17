@@ -1,5 +1,5 @@
 all:SISTEMA SIMULACAO
-	gcc main.c sistema.o simulacao.o -o exerc2 -lm
+	gcc main.c sistema.o simulacao.o -o exerc3 -lm
 SISTEMA:
 	gcc -c sistema.c -lm
 SIMULACAO:
