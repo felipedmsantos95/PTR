@@ -63,6 +63,37 @@ double *xt(double *u, int t)
     return x;    
 }
 
+//Função para cálculo de x bola
+
+double *dxt(double *x, double *u)
+{   
+    double * result = (double *) calloc (3, sizeof (double));
+    double v = u[0];
+    double w = u[1];
+
+    result[0] = x[1];
+    result[1] = -(x[0]);
+    result[2] = u[1];
+
+    return result;    
+    
+}
+
+
+//Funcao que calcula o y em funcao de x
+double *Yt(double *x)
+{
+   
+    double * y = (double *) calloc (3, sizeof (double));    
+    //Multiplicacao das matrizes envolvidas
+    y[0] = (1 * x[0]) + (0 * x[1]) + (0 * x[2]);
+    y[1] = (0 * x[0]) + (1 * x[1]) + (0 * x[2]);
+    y[2] = (0 * x[0]) + (0 * x[1]) + (1 * x[2]);    
+    
+
+    return y;
+}
+
 //Funcao para o calculo da saída y(t)
 
 double *yt(double *u, int t)
