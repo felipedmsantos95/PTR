@@ -1,6 +1,8 @@
 #ifndef SISTEMA_H
 #define SISTEMA_H
 
+#include<math.h>
+
 double x3(double v, double w);
 
 double *ut(int k);

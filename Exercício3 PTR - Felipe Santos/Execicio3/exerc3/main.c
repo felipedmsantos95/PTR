@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "sistema.h"
 #include "simulacao.h"
-
+#include "libIn.h"
+#include "libOut.h"
+#include "libX.h"
 
 int main(int argc, char *argv[])
 {
