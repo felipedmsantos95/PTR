@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <time.h>
 
 //Calcular a orientacao do robô
 //v é a velocidade linear e w é a velocidade angular
